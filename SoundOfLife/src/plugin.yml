@@ -1,0 +1,9 @@
+main: starbreakerstudios.spuller.soundoflife.sol_Master
+name: SoundOfLife
+version: 1.0
+website: http://www.starbreakerstudios.com
+
+commands:
+  music:
+    usage: /music
+    
