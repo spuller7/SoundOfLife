@@ -23,6 +23,7 @@ public class craftingRecipe implements Listener {
        HashMap<Player, Integer> schedual = new HashMap<Player, Integer>();
        HashMap<Player, Recipe> inInventory = new HashMap<Player, Recipe>();
        HashMap<Player, List<Recipe>> playerRecipes = new HashMap<Player, List<Recipe>>();
+
        
   
    	public void whenEnabled() {

@@ -245,7 +245,8 @@ public class Menu implements Listener{
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(name);
 			ArrayList<String> lore = new ArrayList<String>();
-			lore.add("120 BPM");
+			lore.add(intInfo.get(p).getTempo() + " Beats per Tick");
+			im.setLore(lore);
 			i.setItemMeta(im);
 			return i;
 		}
@@ -254,7 +255,8 @@ public class Menu implements Listener{
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(name);
 			ArrayList<String> lore = new ArrayList<String>();
-			lore.add("120 BPM");
+			lore.add(intInfo.get(p).getTempo() + " Beats per Tick");
+			im.setLore(lore);
 			i.setItemMeta(im);
 			return i;
 		}
@@ -393,7 +395,16 @@ public class Menu implements Listener{
     						intInfo.get(p).getSongName());	
     			}
     		}
-    		
+    		else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Decrease Tempo")) {
+    			intInfo.get(p).setTempo(intInfo.get(p).getTempo() - 1);
+    			show(p);
+        		e.setCancelled(true);
+        	}
+    		else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("Increase Tempo")) {
+    			intInfo.get(p).setTempo(intInfo.get(p).getTempo() + 1);
+    			show(p);
+        		e.setCancelled(true);
+        	}
     		else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) {
 
         		e.setCancelled(true);
@@ -427,7 +438,7 @@ public class Menu implements Listener{
     			}
     			else if(e.isLeftClick()){
     				p.sendMessage("Go to sample");
-    				musicPB.sampleMusic(intInfo.get(p).getSongName(), intInfo.get(p).getAllInstruments(),false, intInfo.get(p).getMeasure(), intInfo.get(p).getInstrument(), p);
+    				musicPB.sampleMusic(intInfo.get(p).getSongName(), intInfo.get(p).getAllInstruments(),false, intInfo.get(p).getMeasure(), intInfo.get(p).getInstrument(), p, intInfo.get(p).getTempo(), intInfo.get(p).getSound());
     			}
     		
         		e.setCancelled(true);
@@ -446,7 +457,7 @@ public class Menu implements Listener{
     			}
     			else if(e.isLeftClick()){
     				p.sendMessage("Go to sample");
-    				musicPB.sampleMusic(intInfo.get(p).getSongName(), intInfo.get(p).getAllInstruments(),true, intInfo.get(p).getMeasure(), intInfo.get(p).getInstrument(), p);
+    				musicPB.sampleMusic(intInfo.get(p).getSongName(), intInfo.get(p).getAllInstruments(),true, intInfo.get(p).getMeasure(), intInfo.get(p).getInstrument(), p, intInfo.get(p).getTempo(), intInfo.get(p).getSound());
     			}
         		e.setCancelled(true);
             }
@@ -567,7 +578,7 @@ public class Menu implements Listener{
 						}
 						else{
 							
-							playerInterfaceInfo pII = new playerInterfaceInfo(Sound.BLOCK_NOTE_HARP, 1, 0, 80, "lute", e.getItem().getItemMeta().getDisplayName(), null, false);
+							playerInterfaceInfo pII = new playerInterfaceInfo(Sound.BLOCK_NOTE_HARP, 1, 0, 10, "lute", e.getItem().getItemMeta().getDisplayName(), null, false);
 							
 							intInfo.put(e.getPlayer(), pII);
 							
